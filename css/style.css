@@ -1,0 +1,15 @@
+body {
+  padding-top: 60px;
+}
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+.button-small {
+  border: none;
+  border-radius: 100%;
+}

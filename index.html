@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Toilet Queue</title>
+
+    <link href="css/ionic/css/ionic.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/toilet.js"></script>
+  </head>
+
+  <body ng-app="toilet" ng-controller="queue">
+
+    <form ng-submit="save()" class="sticky-header">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Add your name" ng-model="name">
+        </label>
+        <button class="button button-small">
+          <i class="icon ion-ios7-plus-outline"></i>
+        </button>
+      </div>
+    </form>
+
+    <ul class="list padding">
+      <li
+        class="item item-icon-right"
+        ng-click="remove(person)"
+        ng-repeat="person in queue | orderBy:'time'">
+        <strong>{{person.name}}</strong>
+        <small>Added <span timeago="person.time"></small>
+        <i class="icon ion-ios7-minus"></i>
+      </li>
+    </ul>
+
+  </body>
+</html>
