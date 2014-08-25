@@ -17,7 +17,7 @@
 
   <body ng-app="toilet" ng-controller="queue">
 
-    <form ng-submit="save()" class="sticky-header">
+    <form ng-submit="add()" class="sticky-header">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
           <input type="text" placeholder="Add your name" ng-model="name">
@@ -28,16 +28,35 @@
       </div>
     </form>
 
-    <ul class="list padding">
-      <li
-        class="item item-icon-right"
-        ng-click="remove(person)"
-        ng-repeat="person in queue | orderBy:'time'">
-        <strong>{{person.name}}</strong>
-        <small>Added <span timeago="person.time"></small>
-        <i class="icon ion-ios7-minus"></i>
-      </li>
-    </ul>
+    <h2 class="padding">Average wait time: {{averageLength}}</h2>
+
+
+    <div class="row">
+      <div class="col col-50">
+        <ul class="list padding">
+          <li
+            class="item item-icon-right"
+            ng-click="add(person.name)"
+            ng-repeat="person in team | orderBy:'name'">
+            <strong>{{person.name}}</strong>
+            <i class="icon ion-ios7-plus"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="col col-50">
+        <ul class="list padding">
+          <li
+            class="item item-icon-right"
+            ng-click="remove(person)"
+            ng-repeat="person in queue | orderBy:'time'">
+            <strong>{{person.name}}</strong>
+            <small>Added <span timeago="person.time"></small>
+            <i class="icon ion-ios7-minus"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
 
   </body>
 </html>
