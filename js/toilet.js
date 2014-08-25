@@ -50,7 +50,11 @@ app.directive("timeago", function($interval) {
     },
     link: function($scope, el, attrs) {
       var renderTime = function() {
-        el.text(moment($scope.time).fromNow());
+        fromNow = moment($scope.time).fromNow();
+        if(!$scope.fromNow || fromNow !== $scope.fromNow) {
+          el.text(fromNow);
+          $scope.fromNow = fromNow;
+        }
       };
       renderTime();
       $interval(renderTime, 1000);
