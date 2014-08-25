@@ -20,8 +20,9 @@ app.controller('queue', function($scope, api) {
     $scope.averageLength = moment.duration(avg, 'milliseconds').humanize();
   };
 
-  $scope.add = function(name) {
-    name = name || $scope.name;
+  $scope.add = function($event, name) {
+    $event.preventDefault();
+    //name = name || $scope.name;
     if(!name) {
       return;
     }
@@ -31,7 +32,8 @@ app.controller('queue', function($scope, api) {
     $scope.name = '';
   };
 
-  $scope.remove = function(person) {
+  $scope.remove = function($event, person) {
+    $event.preventDefault();
     api.remove(person.name)
     loadPeople();
   };
