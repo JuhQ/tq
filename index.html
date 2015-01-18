@@ -50,7 +50,7 @@
           <li
             class="item item-icon-right"
             ng-click="remove($event, person)"
-            ng-repeat="person in queue | orderBy:'time'">
+            ng-repeat="person in queue">
             <strong>{{person.name}}</strong>
             <small>Added <span timeago="person.time"></small>
             <i class="icon ion-ios7-minus"></i>
