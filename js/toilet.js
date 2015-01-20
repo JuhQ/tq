@@ -127,13 +127,13 @@ module.factory('api', function() {
       
       people.push(person);
       
-      // Increment weight to gradually move more frequent users to top of list
-      for (var i in people) {
-        if (people[i].name == name) {
-          if (!people[i].weight) {
-            people[i].weight = 0;
+      // Increment team member weight to gradually move more frequent users to top of list
+      for (var i in team) {
+        if (team[i].name == name) {
+          if (!team[i].weight) {
+            team[i].weight = 0;
           }
-          people[i].weight += weight(name);
+          team[i].weight += weight(name);
         }
       }
 
