@@ -39,7 +39,7 @@
           <li
             class="item item-icon-right"
             ng-click="add($event, person.name)"
-            ng-repeat="person in team | orderBy:'name'">
+            ng-repeat="person in team | orderBy:['-weight', 'name']">
             <strong><small>{{person.name}}</small></strong>
             <i class="icon ion-ios7-plus"></i>
           </li>

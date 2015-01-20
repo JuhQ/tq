@@ -84,27 +84,35 @@ module.factory('api', function() {
     times.push(time)
     window.localStorage.setItem("time", JSON.stringify(times));
   };
-
+  var weight = function(name) {
+    return ~~(1/Math.log((name.charCodeAt(0) - 63) * name.length) * 1000);
+  };
+  
   var team = [
-    {name: "JuhQ"},
-    {name: "Juha"},
-    {name: "Matti"},
-    {name: "Mevi"},
-    {name: "Eevert"},
-    {name: "Jesse"},
-    {name: "Henri"},
-    {name: "Marko"},
+    {name: "Christoffer"},
     {name: "Dr. Luukkainen"},
-    {name: "Varya"},
+    {name: "Ezku"},
     {name: "Harri"},
-    {name: "Petrus"},
-    {name: "Tomi"},
+    {name: "Henri"},
+    {name: "Jesse"},
+    {name: "Juha"},
+    {name: "JuhQ"},
+    {name: "Matti"},
+    {name: "Marko"},
+    {name: "Mevi"},
     {name: "Nate"},
-    {name: "Satu"},
+    {name: "Petrus"},
     {name: "Rafael"},
+    {name: "Satu"},
     {name: "Sampo"},
-    {name: "Christoffer"}
+    {name: "Tomi"}
   ];
+  // Set initial weights to zero
+  for (var i in team) {
+    if (!team[i].weight) {
+      team[i].weight = 0;
+    }
+  }
 
   return {
     getTeam: function() {
@@ -122,11 +130,17 @@ module.factory('api', function() {
     set: function(name) {
       var people = getPeople();
       var person = {name: name, time: new Date().getTime()};
-
-      if(person.name === "Christoffer") {
-        people.unshift(person);
-      } else {
-        people.push(person);
+      
+      people.push(person);
+      
+      // Increment team member weight to gradually move more frequent users to top of list
+      for (var i in team) {
+        if (team[i].name == name) {
+          if (!team[i].weight) {
+            team[i].weight = 0;
+          }
+          team[i].weight += weight(name);
+        }
       }
 
       window.localStorage.setItem("people", JSON.stringify(people));
@@ -135,7 +149,7 @@ module.factory('api', function() {
       var people = getPeople();
       var newList = [];
       var timeDiff;
-      for(i in people) {
+      for(var i in people) {
         if(people[i].name !== name) {
           newList.push(people[i])
         } else {
