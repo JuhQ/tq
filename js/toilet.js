@@ -128,7 +128,7 @@ module.factory('api', function() {
       people.push(person);
       
       // Increment weight to gradually move more frequent users to top of list
-      for (i in people) {
+      for (var i in people) {
         if (people[i].name == name) {
           if (!people[i].weight) {
             people[i].weight = 0;
@@ -143,7 +143,7 @@ module.factory('api', function() {
       var people = getPeople();
       var newList = [];
       var timeDiff;
-      for(i in people) {
+      for(var i in people) {
         if(people[i].name !== name) {
           newList.push(people[i])
         } else {
