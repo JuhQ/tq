@@ -84,11 +84,14 @@ module.factory('api', function() {
     times.push(time)
     window.localStorage.setItem("time", JSON.stringify(times));
   };
-
+  var weight = function(name) {
+    return 1;
+  };
+  
   var team = [
     {name: "Christoffer"},
     {name: "Dr. Luukkainen"},
-    {name: "Eevert"},
+    {name: "Ezku"},
     {name: "Harri"},
     {name: "Henri"},
     {name: "Jesse"},
@@ -121,11 +124,17 @@ module.factory('api', function() {
     set: function(name) {
       var people = getPeople();
       var person = {name: name, time: new Date().getTime()};
-
-      if(person.name === "Christoffer") {
-        people.unshift(person);
-      } else {
-        people.push(person);
+      
+      people.push(person);
+      
+      // Increment weight to gradually move more frequent users to top of list
+      for (i in people) {
+        if (people[i].name == name) {
+          if (!people[i].weight) {
+            people[i].weight = 0;
+          }
+          people[i].weight += weight(name);
+        }
       }
 
       window.localStorage.setItem("people", JSON.stringify(people));
