@@ -85,7 +85,7 @@ module.factory('api', function() {
     window.localStorage.setItem("time", JSON.stringify(times));
   };
   var weight = function(name) {
-    return 1;
+    return ~~(1/Math.log((name.charCodeAt(0) - 63) * name.length) * 1000);
   };
   
   var team = [
