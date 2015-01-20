@@ -107,6 +107,12 @@ module.factory('api', function() {
     {name: "Sampo"},
     {name: "Tomi"}
   ];
+  // Set initial weights to zero
+  for (var i in team) {
+    if (!team[i].weight) {
+      team[i].weight = 0;
+    }
+  }
 
   return {
     getTeam: function() {
