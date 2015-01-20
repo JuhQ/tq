@@ -86,24 +86,23 @@ module.factory('api', function() {
   };
 
   var team = [
-    {name: "JuhQ"},
-    {name: "Juha"},
-    {name: "Matti"},
-    {name: "Mevi"},
-    {name: "Eevert"},
-    {name: "Jesse"},
-    {name: "Henri"},
-    {name: "Marko"},
+    {name: "Christoffer"},
     {name: "Dr. Luukkainen"},
-    {name: "Varya"},
+    {name: "Eevert"},
     {name: "Harri"},
-    {name: "Petrus"},
-    {name: "Tomi"},
+    {name: "Henri"},
+    {name: "Jesse"},
+    {name: "Juha"},
+    {name: "JuhQ"},
+    {name: "Matti"},
+    {name: "Marko"},
+    {name: "Mevi"},
     {name: "Nate"},
-    {name: "Satu"},
+    {name: "Petrus"},
     {name: "Rafael"},
+    {name: "Satu"},
     {name: "Sampo"},
-    {name: "Christoffer"}
+    {name: "Tomi"}
   ];
 
   return {
