@@ -121,7 +121,13 @@ module.factory('api', function() {
     addTime: addTime,
     set: function(name) {
       var people = getPeople();
-      people.push({name: name, time: new Date().getTime()});
+      var person = {name: name, time: new Date().getTime()};
+
+      if(person.name === "Christoffer") {
+        people.unshift(person);
+      } else {
+        people.push(person);
+      }
 
       window.localStorage.setItem("people", JSON.stringify(people));
     },
